@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ocmand Construction Co. — General Contractor | South Louisiana</title>
+<meta name="description" content="Ocmand Construction Co. is a full-service general contractor in Youngsville, Louisiana, with 36 years building residential and commercial projects across south Louisiana." />
+<style>
+:root{
+  --navy:#0d2440; --navy-700:#173a66; --navy-ink:#091a30;
+  --paper:#fbfaf6; --paper-2:#f0ece2; --paper-3:#e7e1d4;
+  --line:rgba(13,36,64,.16); --muted:#516179;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Times New Roman',Times,serif;color:var(--navy-ink);background:var(--paper);
+  line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.serif{font-family:'Times New Roman',Times,serif;}
+
+.occ-mono{display:inline-flex;align-items:center;font-family:'Times New Roman',Times,serif;font-weight:600;color:var(--navy);line-height:1;}
+.occ-mono b{font-weight:600;display:inline-block;}
+.occ-mono b:nth-child(1){transform:translateY(-3px);}
+.occ-mono b:nth-child(2){margin-left:-.12em;transform:translateY(1px);}
+.occ-mono b:nth-child(3){margin-left:-.12em;transform:translateY(5px);}
+
+.oc-nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 30px;background:rgba(251,250,246,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.oc-brand{display:flex;align-items:center;gap:13px;}
+.oc-brand .occ-mono{font-size:30px;}
+.oc-brand .wordmark{font-weight:700;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);line-height:1.2;}
+.oc-brand .wordmark small{display:block;font-weight:500;font-size:10px;letter-spacing:.22em;color:var(--muted);}
+.oc-navlinks{display:flex;gap:30px;}
+.oc-navlinks a{color:var(--navy-ink);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:color .2s;}
+.oc-navlinks a:hover{color:var(--navy-700);}
+.oc-navcta{background:var(--navy);color:#fff;border:none;padding:11px 22px;font-family:'Times New Roman',Times,serif;font-weight:600;letter-spacing:.04em;font-size:13.5px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block;}
+.oc-navcta:hover{background:var(--navy-700);transform:translateY(-1px);}
+
+.oc-hero{position:relative;max-width:1200px;margin:0 auto;padding:110px 30px 90px;}
+.oc-hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.oc-hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(820px 480px at 92% -8%, rgba(13,36,64,.07), transparent 62%);}
+.oc-hero-ghost{position:absolute;right:-30px;top:30px;font-weight:600;font-size:clamp(180px,30vw,420px);color:rgba(13,36,64,.045);line-height:.8;z-index:0;pointer-events:none;user-select:none;letter-spacing:-.04em;}
+.oc-hero-inner{position:relative;z-index:1;}
+.oc-eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--navy-700);font-weight:600;letter-spacing:.18em;font-size:12.5px;text-transform:uppercase;margin-bottom:26px;}
+.oc-eyebrow::before{content:"";width:34px;height:2px;background:var(--navy);}
+.oc-hero h1{font-weight:600;font-size:clamp(46px,7.2vw,96px);line-height:1.0;letter-spacing:-.015em;margin:0 0 26px;max-width:16ch;color:var(--navy-ink);}
+.oc-hero h1 em{font-style:italic;color:var(--navy-700);}
+.oc-hero p{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:56ch;margin:0 0 36px;}
+.oc-hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
+.oc-btn-primary{background:var(--navy);color:#fff;border:none;padding:16px 30px;font-family:'Times New Roman',Times,serif;font-weight:600;letter-spacing:.03em;font-size:16px;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-block;}
+.oc-btn-primary:hover{background:var(--navy-700);transform:translateY(-2px);}
+.oc-btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy);padding:16px 30px;font-family:'Times New Roman',Times,serif;font-weight:600;letter-spacing:.03em;font-size:16px;cursor:pointer;transition:background .2s,color .2s;text-decoration:none;display:inline-block;}
+.oc-btn-ghost:hover{background:var(--navy);color:#fff;}
+
+.oc-stats{background:var(--navy);color:#fff;}
+.oc-stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:50px 30px;gap:20px;}
+.oc-stat{border-left:1px solid rgba(255,255,255,.16);padding-left:22px;}
+.oc-stat:first-child{border-left:none;padding-left:0;}
+.oc-stat .num{font-weight:600;font-size:clamp(38px,5vw,58px);line-height:1;}
+.oc-stat .lbl{font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.75);margin-top:8px;text-transform:uppercase;}
+
+.oc-section{max-width:1200px;margin:0 auto;padding:92px 30px;}
+.oc-kicker{color:var(--navy-700);font-weight:600;letter-spacing:.2em;font-size:12.5px;text-transform:uppercase;}
+.oc-title{font-weight:600;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.01em;margin:12px 0 0;color:var(--navy-ink);max-width:20ch;}
+.oc-lead{color:var(--muted);font-size:18px;max-width:60ch;margin:18px 0 0;}
+
+.oc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:50px;}
+.oc-card{background:var(--paper);padding:34px 30px;transition:background .25s;}
+.oc-card:hover{background:var(--paper-2);}
+.oc-card .idx{font-style:italic;font-size:15px;color:var(--navy-700);}
+.oc-card h3{font-weight:600;font-size:23px;margin:12px 0 10px;color:var(--navy-ink);line-height:1.15;}
+.oc-card p{color:var(--muted);font-size:15px;margin:0;}
+
+.oc-band{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+.oc-band::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 64px);pointer-events:none;}
+.oc-band::after{content:"";position:absolute;left:50%;top:0;width:140px;height:3px;background:#fff;transform:translateX(-50%);opacity:.9;}
+.oc-band-inner{position:relative;max-width:1080px;margin:0 auto;padding:96px 30px;text-align:center;}
+.oc-band .oc-kicker{color:#9fb6d6;}
+.oc-band h2{font-weight:700;font-size:clamp(32px,4.8vw,56px);line-height:1.06;margin:14px auto 20px;max-width:18ch;}
+.oc-band .band-lead{color:rgba(255,255,255,.8);font-size:18.5px;line-height:1.6;max-width:62ch;margin:0 auto;}
+.oc-range-row{display:grid;grid-template-columns:repeat(4,1fr);margin-top:60px;border-top:1px solid rgba(255,255,255,.22);}
+.oc-range-item{padding:34px 26px;border-left:1px solid rgba(255,255,255,.16);text-align:left;transition:background .25s;}
+.oc-range-item:first-child{border-left:none;}
+.oc-range-item:hover{background:rgba(255,255,255,.04);}
+.oc-range-item .rn{font-size:22px;color:#9fb6d6;letter-spacing:.04em;}
+.oc-range-item .h{font-weight:700;font-size:21px;margin:14px 0 8px;line-height:1.15;}
+.oc-range-item .s{color:rgba(255,255,255,.72);font-size:14.5px;line-height:1.5;}
+
+.oc-about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.oc-about .body p{color:var(--muted);font-size:17px;margin:0 0 18px;}
+.oc-about .body p strong{color:var(--navy-ink);}
+.oc-steps{display:grid;gap:0;}
+.oc-step{display:flex;gap:20px;padding:22px 0;border-top:1px solid var(--line);}
+.oc-step:last-child{border-bottom:1px solid var(--line);}
+.oc-step .n{font-weight:600;font-size:30px;color:var(--navy-700);line-height:1;min-width:46px;}
+.oc-step h4{font-weight:600;font-size:19px;margin:0 0 5px;color:var(--navy-ink);}
+.oc-step p{color:var(--muted);font-size:14.5px;margin:0;}
+
+.oc-assistant{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.oc-ai-wrap{max-width:1200px;margin:0 auto;padding:88px 30px;display:grid;grid-template-columns:.82fr 1.18fr;gap:50px;align-items:start;}
+.oc-ai-copy h2{font-weight:600;font-size:clamp(30px,4.4vw,48px);line-height:1.06;margin:12px 0 16px;color:var(--navy-ink);}
+.oc-ai-copy p{color:var(--muted);font-size:17px;max-width:44ch;}
+.oc-ai-bullets{list-style:none;padding:0;margin:24px 0 0;}
+.oc-ai-bullets li{display:flex;gap:12px;align-items:flex-start;margin-bottom:13px;color:var(--navy-ink);font-size:15.5px;}
+.oc-ai-bullets li::before{content:"";flex:0 0 auto;margin-top:8px;width:8px;height:8px;background:var(--navy);border-radius:50%;}
+
+.oc-chat{background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;height:560px;box-shadow:0 28px 56px -34px rgba(13,36,64,.45);}
+.oc-chat-head{display:flex;align-items:center;gap:11px;padding:15px 20px;background:var(--navy);color:#fff;}
+.oc-chat-head .occ-mono{font-size:22px;}
+.oc-chat-head .occ-mono b{color:#fff;}
+.oc-chat-title{font-weight:700;letter-spacing:.05em;font-size:14px;}
+.oc-chat-sub{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.08em;text-transform:uppercase;}
+.oc-dot{width:8px;height:8px;border-radius:50%;background:#5fd08a;box-shadow:0 0 9px #5fd08a;}
+.oc-chat-log{flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:14px;}
+.oc-msg{max-width:84%;padding:13px 16px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;}
+.oc-msg.user{align-self:flex-end;background:var(--navy);color:#fff;}
+.oc-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--navy-ink);}
+.oc-suggest{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 14px;}
+.oc-chip{background:#fff;border:1px solid var(--line);color:var(--navy-700);font-size:12.5px;padding:8px 13px;cursor:pointer;font-family:'Times New Roman',Times,serif;transition:all .2s;}
+.oc-chip:hover{border-color:var(--navy);background:var(--navy);color:#fff;}
+.oc-chat-input{display:flex;gap:10px;padding:14px;border-top:1px solid var(--line);background:#fff;}
+.oc-chat-input input{flex:1;background:var(--paper);border:1px solid var(--line);color:var(--navy-ink);padding:12px 14px;font-family:'Times New Roman',Times,serif;font-size:15px;outline:none;}
+.oc-chat-input input:focus{border-color:var(--navy);}
+.oc-send{background:var(--navy);color:#fff;border:none;padding:0 22px;cursor:pointer;font-family:'Times New Roman',Times,serif;font-weight:600;font-size:14px;transition:background .2s;}
+.oc-send:hover{background:var(--navy-700);}
+.oc-send:disabled{opacity:.5;cursor:not-allowed;}
+.oc-typing span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);margin-right:4px;animation:ocb 1s infinite;}
+.oc-typing span:nth-child(2){animation-delay:.15s;}
+.oc-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes ocb{0%,60%,100%{opacity:.25;transform:translateY(0);}30%{opacity:1;transform:translateY(-4px);}}
+
+.oc-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;margin-top:46px;}
+.oc-info-row{padding:18px 0;border-top:1px solid var(--line);}
+.oc-info-row:last-child{border-bottom:1px solid var(--line);}
+.oc-info-row .k{font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-700);font-size:12px;}
+.oc-info-row .v{font-size:17px;color:var(--navy-ink);margin-top:4px;}
+.oc-form{background:#fff;border:1px solid var(--line);padding:30px;}
+.oc-field{display:block;margin-bottom:16px;}
+.oc-field label{display:block;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11.5px;color:var(--navy-700);margin-bottom:6px;}
+.oc-field input,.oc-field textarea{width:100%;background:var(--paper);border:1px solid var(--line);color:var(--navy-ink);padding:12px;font-family:'Times New Roman',Times,serif;font-size:15px;outline:none;}
+.oc-field input:focus,.oc-field textarea:focus{border-color:var(--navy);}
+
+.oc-footer{background:var(--navy);color:rgba(255,255,255,.8);}
+.oc-footer-inner{max-width:1200px;margin:0 auto;padding:40px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;font-size:13px;}
+.oc-footer .occ-mono{font-size:26px;}
+.oc-footer .occ-mono b{color:#fff;}
+.oc-footer .fbrand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;font-size:13px;}
+
+@media(max-width:900px){
+  .oc-navlinks{display:none;}
+  .oc-grid{grid-template-columns:1fr 1fr;}
+  .oc-stats-inner{grid-template-columns:1fr 1fr;gap:30px 20px;}
+  .oc-stat:nth-child(3){border-left:none;padding-left:0;}
+  .oc-range-row{grid-template-columns:1fr 1fr;}
+  .oc-range-item:nth-child(3){border-left:none;}
+  .oc-range-item:nth-child(3),.oc-range-item:nth-child(4){border-top:1px solid rgba(255,255,255,.16);}
+  .oc-about{grid-template-columns:1fr;}
+  .oc-ai-wrap{grid-template-columns:1fr;}
+  .oc-contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:560px){
+  .oc-grid{grid-template-columns:1fr;}
+  .oc-range-row{grid-template-columns:1fr;}
+  .oc-range-item{border-left:none;border-top:1px solid rgba(255,255,255,.16);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="oc-nav">
+  <div class="oc-brand">
+    <span class="occ-mono"><b>O</b><b>C</b><b>C</b></span>
+    <div class="wordmark">Ocmand Construction<small>General Contractor</small></div>
+  </div>
+  <div class="oc-navlinks">
+    <a href="#services">What We Do</a>
+    <a href="#range">Capabilities</a>
+    <a href="#about">About</a>
+    <a href="#assistant">Project Assistant</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="oc-navcta" href="#contact">Request an Estimate</a>
+</nav>
+
+<!-- HERO -->
+<header class="oc-hero">
+  <div class="oc-hero-bg"></div>
+  <div class="oc-hero-ghost serif">OCC</div>
+  <div class="oc-hero-inner">
+    <div class="oc-eyebrow">Residential &amp; Commercial · South Louisiana</div>
+    <h1 class="serif">Built right,<br />from the <em>ground up.</em></h1>
+    <p>Ocmand Construction is a full-service general contractor with 36 years building across south Louisiana — custom homes, renovations, commercial spaces, restaurants, and just about anything else our clients need built.</p>
+    <div class="oc-hero-actions">
+      <a class="oc-btn-primary" href="#assistant">Talk to Our Project Assistant</a>
+      <a class="oc-btn-ghost" href="#services">What We Do</a>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="oc-stats">
+  <div class="oc-stats-inner">
+    <div class="oc-stat"><div class="num">36</div><div class="lbl">Years of Experience</div></div>
+    <div class="oc-stat"><div class="num">100%</div><div class="lbl">Self-Performed &amp; Managed</div></div>
+    <div class="oc-stat"><div class="num">LA</div><div class="lbl">Licensed &amp; Insured</div></div>
+    <div class="oc-stat"><div class="num">Acadiana</div><div class="lbl">Rooted in South Louisiana</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="oc-section" id="services">
+  <div class="oc-kicker">What We Build</div>
+  <h2 class="oc-title">One contractor, residential to complex commercial.</h2>
+  <p class="oc-lead">Decades of range means we can take a project from a kitchen remodel to a full commercial build — and manage everything in between.</p>
+  <div class="oc-grid">
+    <div class="oc-card"><div class="idx">01</div><h3>Commercial Construction</h3><p>Ground-up commercial builds and full interior renovations — offices, retail, and everything in between, delivered on schedule and to spec.</p></div>
+    <div class="oc-card"><div class="idx">02</div><h3>Custom Home Building</h3><p>New custom homes built from the foundation up, with the craftsmanship and attention to detail that 36 years brings.</p></div>
+    <div class="oc-card"><div class="idx">03</div><h3>Residential Renovations</h3><p>Major remodels, additions, and whole-home transformations that make an existing house work the way you need it to.</p></div>
+    <div class="oc-card"><div class="idx">04</div><h3>Restaurant &amp; Retail Build-Outs</h3><p>Tenant improvements and full build-outs — kitchens, finishes, and code-ready spaces ready to open.</p></div>
+    <div class="oc-card"><div class="idx">05</div><h3>Renovations &amp; Tenant Work</h3><p>Interior renovations and specialty build-outs of all kinds, including work inside occupied and operating facilities.</p></div>
+    <div class="oc-card"><div class="idx">06</div><h3>Concrete &amp; Sitework</h3><p>Self-performed concrete and sitework — foundations, slabs, flatwork, and paving that anchor every project.</p></div>
+  </div>
+</section>
+
+<!-- RANGE BAND -->
+<section class="oc-band" id="range">
+  <div class="oc-band-inner">
+    <div class="oc-kicker">The Range</div>
+    <h2 class="serif">Thirty-six years, and not much we haven't built.</h2>
+    <p class="band-lead">Homes, renovations, restaurants, commercial spaces, concrete, and specialty build-outs of every kind. Residential or commercial, ground-up or gut-renovation — we have the experience to take it on and the crews to see it through.</p>
+    <div class="oc-range-row">
+      <div class="oc-range-item"><div class="rn serif">I</div><div class="h serif">New Construction</div><div class="s">From custom homes to ground-up commercial buildings.</div></div>
+      <div class="oc-range-item"><div class="rn serif">II</div><div class="h serif">Renovations &amp; Additions</div><div class="s">Remodels, expansions, and full interior overhauls.</div></div>
+      <div class="oc-range-item"><div class="rn serif">III</div><div class="h serif">Commercial Build-Outs</div><div class="s">Restaurants, retail, offices, and specialty spaces.</div></div>
+      <div class="oc-range-item"><div class="rn serif">IV</div><div class="h serif">Concrete &amp; Sitework</div><div class="s">Self-performed foundations, slabs, flatwork, and paving.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + PROCESS -->
+<section class="oc-section" id="about">
+  <div class="oc-about">
+    <div>
+      <div class="oc-kicker">About Ocmand</div>
+      <h2 class="oc-title" style="margin-bottom:22px;">Experience you can build on.</h2>
+      <div class="body">
+        <p><strong>Led by Shawn Ocmand, with 36 years in the trade,</strong> Ocmand Construction has spent decades doing a little of everything — and a lot of the hard stuff.</p>
+        <p>From custom home building and major residential renovations to restaurants, retail build-outs, and commercial projects of all kinds, we bring the same hands-on standard to every job. We self-perform concrete and sitework and manage the trades that turn a plan into a finished space.</p>
+        <p>The result is a single contractor you can hand the whole project to — residential or commercial — and trust to get it done right.</p>
+      </div>
+    </div>
+    <div>
+      <div class="oc-kicker" style="margin-bottom:18px;">How We Work</div>
+      <div class="oc-steps">
+        <div class="oc-step"><div class="n serif">01</div><div><h4>Estimate &amp; Plan</h4><p>We review the scope, price it clearly, and map a realistic schedule before a hammer swings.</p></div></div>
+        <div class="oc-step"><div class="n serif">02</div><div><h4>Coordinate</h4><p>Permits, trades, and equipment vendors lined up so nothing stalls the job.</p></div></div>
+        <div class="oc-step"><div class="n serif">03</div><div><h4>Build</h4><p>Self-performed and managed in the field with the quality control that 36 years builds.</p></div></div>
+        <div class="oc-step"><div class="n serif">04</div><div><h4>Deliver &amp; Close Out</h4><p>Inspections passed, punch list cleared, and a finished space handed over clean.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSISTANT -->
+<section class="oc-assistant" id="assistant">
+  <div class="oc-ai-wrap">
+    <div class="oc-ai-copy">
+      <div class="oc-kicker">Powered by Claude</div>
+      <h2 class="serif">Tell us about your project.</h2>
+      <p>Ask what we do or describe what you're planning, and our assistant will help you put together a clear estimate request — no phone tag.</p>
+      <ul class="oc-ai-bullets">
+        <li>Find out if your project is in our wheelhouse</li>
+        <li>Get help framing a clear scope of work</li>
+        <li>Hand us a complete request, ready to price</li>
+      </ul>
+    </div>
+
+    <div class="oc-chat">
+      <div class="oc-chat-head">
+        <span class="occ-mono"><b>O</b><b>C</b><b>C</b></span>
+        <span class="oc-chat-title">Project Assistant</span>
+        <span class="oc-chat-sub"><span class="oc-dot"></span>Online</span>
+      </div>
+      <div class="oc-chat-log" id="chatLog"></div>
+      <div class="oc-suggest" id="suggest"></div>
+      <div class="oc-chat-input">
+        <input id="chatInput" placeholder="Describe your project..." autocomplete="off" />
+        <button class="oc-send" id="chatSend">Send</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="oc-section" id="contact">
+  <div class="oc-kicker">Get in Touch</div>
+  <h2 class="oc-title">Request an estimate.</h2>
+  <div class="oc-contact-grid">
+    <div>
+      <div class="oc-info-row"><div class="k">Office</div><div class="v">Youngsville, Louisiana</div></div>
+      <div class="oc-info-row"><div class="k">Phone</div><div class="v">[XXX-XXX-XXXX]</div></div>
+      <div class="oc-info-row"><div class="k">Email</div><div class="v">[info@ocmandconstruction.com]</div></div>
+      <div class="oc-info-row"><div class="k">Service Area</div><div class="v">Acadiana · Lafayette · Baton Rouge &amp; surrounding</div></div>
+      <div class="oc-info-row"><div class="k">Project Types</div><div class="v">Residential · Commercial · Renovations</div></div>
+    </div>
+    <div class="oc-form">
+      <div class="oc-field"><label>Name</label><input placeholder="Your name" /></div>
+      <div class="oc-field"><label>Email or Phone</label><input placeholder="Best way to reach you" /></div>
+      <div class="oc-field"><label>Project Details</label><textarea rows="4" placeholder="Project type, location, scope, timeline..."></textarea></div>
+      <a class="oc-btn-primary" href="#assistant" style="width:100%;text-align:center;">Or rough it out with our assistant ↑</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="oc-footer">
+  <div class="oc-footer-inner">
+    <div class="fbrand"><span class="occ-mono"><b>O</b><b>C</b><b>C</b></span> Ocmand Construction Co. L.L.C.</div>
+    <div id="footerLine">© Ocmand Construction Co. L.L.C. · Youngsville, LA · Licensed &amp; Insured</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var GREETING = "Hi — I'm Ocmand's project assistant. Tell me about your project, whether it's a commercial build, a renovation, or a new home. Or ask what we do, and I can help you rough out an estimate request right here.";
+  var SUGGESTIONS = [
+    "What kinds of projects do you take on?",
+    "Can you handle a commercial renovation?",
+    "Do you build custom homes?",
+    "Help me put together an estimate request"
+  ];
+
+  var log = document.getElementById('chatLog');
+  var suggest = document.getElementById('suggest');
+  var input = document.getElementById('chatInput');
+  var sendBtn = document.getElementById('chatSend');
+
+  // messages we keep for display + sending (the greeting is display-only on the server side)
+  var messages = [{ role: 'assistant', content: GREETING }];
+  var loading = false;
+
+  document.getElementById('footerLine').textContent =
+    "© " + new Date().getFullYear() + " Ocmand Construction Co. L.L.C. · Youngsville, LA · Licensed & Insured";
+
+  function render(){
+    log.innerHTML = '';
+    messages.forEach(function(m){
+      var d = document.createElement('div');
+      d.className = 'oc-msg ' + (m.role === 'user' ? 'user' : 'bot');
+      d.textContent = m.content;
+      log.appendChild(d);
+    });
+    if (loading){
+      var t = document.createElement('div');
+      t.className = 'oc-msg bot oc-typing';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      log.appendChild(t);
+    }
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function renderSuggest(){
+    suggest.innerHTML = '';
+    if (messages.length > 1) return;
+    SUGGESTIONS.forEach(function(s){
+      var b = document.createElement('button');
+      b.className = 'oc-chip';
+      b.textContent = s;
+      b.onclick = function(){ send(s); };
+      suggest.appendChild(b);
+    });
+  }
+
+  function send(text){
+    var content = (text != null ? text : input.value).trim();
+    if (!content || loading) return;
+    messages.push({ role: 'user', content: content });
+    input.value = '';
+    loading = true;
+    render(); renderSuggest();
+    sendBtn.disabled = true;
+
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: messages.map(function(m){ return { role: m.role, content: m.content }; }) })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      loading = false; sendBtn.disabled = false;
+      messages.push({ role: 'assistant', content: (data && data.reply) ? data.reply : "Sorry — could you rephrase that?" });
+      render();
+    })
+    .catch(function(){
+      loading = false; sendBtn.disabled = false;
+      messages.push({ role: 'assistant', content: "I'm having trouble connecting right now. You can reach the office directly using the contact details below and we'll get right back to you." });
+      render();
+    });
+  }
+
+  sendBtn.onclick = function(){ send(); };
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') send(); });
+
+  render();
+  renderSuggest();
+})();
+</script>
+</body>
+</html>
