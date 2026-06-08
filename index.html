@@ -252,7 +252,7 @@ body{
 <section class="oc-section" id="about">
   <div class="oc-about">
     <div>
-      <div class="oc-kicker">About Ocmand Construction </div>
+      <div class="oc-kicker">About Ocmand Construction</div>
       <h2 class="oc-title" style="margin-bottom:22px;">Experience you can build on.</h2>
       <div class="body">
         <p><strong>Led by Shawn Ocmand, with 36 years in the trade,</strong> Ocmand Construction has spent decades doing a little of everything.</p>
@@ -443,32 +443,47 @@ body{
     }
     leadSent = true;
     render();
+
     var transcript = messages.map(function(m){ return (m.role === 'user' ? 'Visitor: ' : 'Assistant: ') + m.content; }).join('\n\n');
-    fetch('https://api.web3forms.com/submit', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: 'New chat inquiry — Ocmand website',
-        from_name: 'Ocmand Website Assistant',
-        message: transcript
+
+    function deliver(summary){
+      fetch('https://api.web3forms.com/submit', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'New website lead — Ocmand',
+          from_name: 'Ocmand Website Assistant',
+          summary: summary || '(summary unavailable — see full conversation below)',
+          full_conversation: transcript
+        })
       })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (data && data.success){
-        messages.push({ role:'assistant', content:"Thanks — I've sent this over to Ocmand. Someone will follow up using the contact details you shared. Anything else I can help with?" });
-      } else {
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data && data.success){
+          messages.push({ role:'assistant', content:"Thanks — I've sent your request to Ocmand along with a summary of what you're after. Someone will follow up using the contact details you shared. Anything else I can help with?" });
+        } else {
+          leadSent = false;
+          messages.push({ role:'assistant', content:"I couldn't send that just now. You can reach the office directly at 337-780-6492 or jobs@ocmandconstruction.com." });
+        }
+        render();
+      })
+      .catch(function(){
         leadSent = false;
         messages.push({ role:'assistant', content:"I couldn't send that just now. You can reach the office directly at 337-780-6492 or jobs@ocmandconstruction.com." });
-      }
-      render();
+        render();
+      });
+    }
+
+    // First ask the assistant to summarize the conversation, then email summary + transcript.
+    fetch('/api/chat', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ mode:'summary', messages: messages.map(function(m){ return { role: m.role, content: m.content }; }) })
     })
-    .catch(function(){
-      leadSent = false;
-      messages.push({ role:'assistant', content:"I couldn't send that just now. You can reach the office directly at 337-780-6492 or jobs@ocmandconstruction.com." });
-      render();
-    });
+    .then(function(r){ return r.json(); })
+    .then(function(s){ deliver(s && s.reply ? s.reply : ''); })
+    .catch(function(){ deliver(''); });
   }
 
   // Contact form -> email
