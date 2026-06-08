@@ -20,6 +20,18 @@ When someone wants an estimate, gather the essentials conversationally: project 
 
 Important: Do NOT name or reference specific past clients, facilities, or named projects — speak only in terms of general capability and experience. Do not invent prices, license numbers, or firm commitments to dates; say the team will confirm those. Keep replies short (a few sentences) unless summarizing a request. Never use emojis.`;
 
+const SUMMARY_PROMPT = `You are preparing a quick lead summary for Ocmand Construction's estimating team based on a website chat. Read the conversation and write a short, scannable summary in plain text (no markdown, no "#" headings). Use simple labeled lines, and OMIT any field the visitor did not actually provide rather than guessing:
+
+What they want: (one or two sentences)
+Project type:
+Location:
+Scope:
+Size / budget:
+Timeline:
+Contact:
+
+If the visitor never shared contact info, end with a clear line that says: No contact info provided. Keep it tight and factual — no sales language, no invented details.`;
+
 export async function onRequestPost(context) {
   const { request, env } = context;
   const headers = { "content-type": "application/json" };
@@ -50,6 +62,19 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ reply: "What can I help you with?" }), { status: 200, headers });
     }
 
+    // Summary mode: condense the conversation into a lead summary for the team.
+    let system = SYSTEM_PROMPT;
+    let apiMessages = messages;
+    let maxTokens = 1000;
+    if (body.mode === "summary") {
+      system = SUMMARY_PROMPT;
+      const transcript = messages
+        .map((m) => (m.role === "user" ? "Visitor: " : "Assistant: ") + m.content)
+        .join("\n");
+      apiMessages = [{ role: "user", content: "Conversation between a visitor and the Ocmand website assistant:\n\n" + transcript + "\n\nWrite the lead summary now." }];
+      maxTokens = 600;
+    }
+
     const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -59,9 +84,9 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5-20251001", // cheapest current model — change if you like
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages,
+        max_tokens: maxTokens,
+        system: system,
+        messages: apiMessages,
       }),
     });
 
