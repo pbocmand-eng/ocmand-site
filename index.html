@@ -57,6 +57,7 @@ body{
 .oc-stat{border-left:1px solid rgba(255,255,255,.16);padding-left:22px;}
 .oc-stat:first-child{border-left:none;padding-left:0;}
 .oc-stat .num{font-weight:600;font-size:clamp(38px,5vw,58px);line-height:1;}
+.oc-stat .num.fit{font-size:clamp(28px,3.3vw,42px);}
 .oc-stat .lbl{font-size:13px;letter-spacing:.06em;color:rgba(255,255,255,.75);margin-top:8px;text-transform:uppercase;}
 
 .oc-section{max-width:1200px;margin:0 auto;padding:92px 30px;}
@@ -173,6 +174,91 @@ body{
   .oc-range-row{grid-template-columns:1fr;}
   .oc-range-item{border-left:none;border-top:1px solid rgba(255,255,255,.16);}
 }
+
+/* --- WORK GALLERY (main viewer + filmstrip) --- */
+.oc-work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;}
+.oc-arrows{display:flex;gap:10px;flex:0 0 auto;}
+.oc-arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  color:var(--navy);font-family:'Times New Roman',Times,serif;font-size:24px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s,border-color .2s;}
+.oc-arrow:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* main viewer (the large window on top) */
+.oc-stage{position:relative;margin-top:34px;background:var(--navy);overflow:hidden;cursor:zoom-in;
+  height:clamp(280px,54vh,560px);}
+.oc-stage img{width:100%;height:100%;object-fit:contain;display:block;
+  opacity:0;transition:opacity .4s ease;}
+.oc-stage img.ready{opacity:1;}
+.oc-stage::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(9,26,48,.72) 0%, rgba(9,26,48,.06) 34%, transparent 55%);}
+.oc-stage-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 28px 24px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;}
+.oc-stage-cap .rule{width:40px;height:2px;background:#fff;opacity:.85;margin-bottom:12px;}
+.oc-stage-cap .cat{font-family:'Times New Roman',Times,serif;font-size:12px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.82);display:block;margin-bottom:4px;}
+.oc-stage-cap .ttl{font-family:'Times New Roman',Times,serif;font-weight:600;color:#fff;
+  line-height:1.12;font-size:clamp(22px,3vw,32px);}
+.oc-stage-count{font-family:'Times New Roman',Times,serif;font-style:italic;font-size:15px;
+  color:rgba(255,255,255,.72);white-space:nowrap;padding-bottom:4px;}
+.oc-stage-zoom{position:absolute;top:16px;right:18px;z-index:2;font-family:'Times New Roman',Times,serif;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:.7;
+  border:1px solid rgba(255,255,255,.4);padding:5px 12px;transition:opacity .2s,background .2s;}
+.oc-stage:hover .oc-stage-zoom{opacity:1;background:rgba(255,255,255,.12);}
+
+/* filmstrip of thumbnails */
+.oc-carousel{position:relative;margin-top:14px;}
+.oc-track{display:flex;gap:10px;overflow-x:auto;scroll-behavior:smooth;
+  padding:3px 0 6px;-ms-overflow-style:none;scrollbar-width:none;}
+.oc-track::-webkit-scrollbar{display:none;}
+.oc-shot{flex:0 0 auto;width:clamp(116px,20vw,168px);aspect-ratio:4/3;
+  position:relative;overflow:hidden;cursor:pointer;background:var(--navy);border:none;padding:0;
+  opacity:.62;transition:opacity .3s ease;}
+.oc-shot:hover{opacity:.85;}
+.oc-shot.active{opacity:1;outline:2px solid var(--navy);outline-offset:0;}
+.oc-shot img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.7,.2,1);}
+.oc-shot:hover img{transform:scale(1.05);}
+.oc-shot .oc-cap,.oc-shot .oc-num,.oc-shot .oc-view{display:none;}
+.oc-carousel::after{content:"";position:absolute;top:0;bottom:6px;right:0;width:56px;pointer-events:none;
+  background:linear-gradient(to right, transparent, var(--paper));}
+
+/* lightbox */
+.oc-lb{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;
+  background:rgba(6,18,34,.95);padding:40px 30px 64px;}
+.oc-lb.open{display:flex;}
+.oc-lb-stage{position:relative;max-width:1100px;width:100%;display:flex;flex-direction:column;align-items:center;}
+.oc-lb img{max-width:90vw;max-height:74vh;object-fit:contain;box-shadow:0 40px 90px -25px rgba(0,0,0,.7);}
+.oc-lb-meta{margin-top:20px;text-align:center;color:#fff;}
+.oc-lb-meta .cat{font-family:'Times New Roman',Times,serif;font-size:12px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.7);display:block;margin-bottom:6px;}
+.oc-lb-meta .ttl{font-family:'Times New Roman',Times,serif;font-size:22px;color:#fff;}
+.oc-lb-count{position:absolute;top:-30px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);
+  font-family:'Times New Roman',Times,serif;font-style:italic;font-size:14px;letter-spacing:.1em;}
+.oc-lb-x{position:fixed;top:22px;right:30px;color:#fff;font-size:34px;line-height:1;cursor:pointer;
+  background:none;border:none;font-family:'Times New Roman',Times,serif;opacity:.8;transition:opacity .2s;}
+.oc-lb-x:hover{opacity:1;}
+.oc-lb-nav{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:52px;line-height:1;
+  cursor:pointer;background:none;border:none;padding:0 26px;font-family:'Times New Roman',Times,serif;
+  opacity:.65;transition:opacity .2s;user-select:none;}
+.oc-lb-nav:hover{opacity:1;}
+.oc-lb-prev{left:4px;} .oc-lb-next{right:4px;}
+
+@media(max-width:900px){
+  .oc-lb-nav{font-size:38px;padding:0 12px;}
+}
+@media(max-width:560px){
+  .oc-work-head{flex-direction:column;align-items:flex-start;gap:18px;}
+  .oc-carousel::after{display:none;}
+  .oc-shot{width:84vw;}
+}
+/* --- SCROLL REVEAL --- */
+.reveal{opacity:0;transform:translateY(30px);
+  transition:opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion: reduce){
+  .reveal,.reveal.in{opacity:1 !important;transform:none !important;transition:none !important;}
+}
 </style>
 </head>
 <body>
@@ -186,6 +272,7 @@ body{
   <div class="oc-navlinks">
     <a href="#services">What We Do</a>
     <a href="#range">Why Ocmand</a>
+    <a href="#work">Our Work</a>
     <a href="#about">About</a>
     <a href="#assistant">Project Assistant</a>
     <a href="#contact">Contact</a>
@@ -212,7 +299,7 @@ body{
 <div class="oc-stats">
   <div class="oc-stats-inner">
     <div class="oc-stat"><div class="num">36</div><div class="lbl">Years of Experience</div></div>
-    <div class="oc-stat"><div class="num">100%</div><div class="lbl">Self-Performed &amp; Managed</div></div>
+    <div class="oc-stat"><div class="num fit">Full-Service</div><div class="lbl">Residential &amp; Commercial</div></div>
     <div class="oc-stat"><div class="num">LA</div><div class="lbl">Licensed &amp; Insured</div></div>
     <div class="oc-stat"><div class="num">Lafayette</div><div class="lbl">Rooted in South Louisiana</div></div>
   </div>
@@ -229,7 +316,7 @@ body{
     <div class="oc-card"><div class="idx">03</div><h3>Residential Renovations</h3><p>Major remodels, additions, and whole-home transformations that make an existing house work the way you need it to.</p></div>
     <div class="oc-card"><div class="idx">04</div><h3>Restaurant &amp; Retail Build-Outs</h3><p>Tenant improvements and full build-outs — kitchens, finishes, and code-ready spaces ready to open.</p></div>
     <div class="oc-card"><div class="idx">05</div><h3>Renovations &amp; Tenant Work</h3><p>Interior renovations and specialty build-outs of all kinds, including work inside occupied and operating facilities.</p></div>
-    <div class="oc-card"><div class="idx">06</div><h3>Concrete &amp; Sitework</h3><p>Self-performed concrete and sitework — foundations, slabs, flatwork, and paving that anchor every project.</p></div>
+    <div class="oc-card"><div class="idx">06</div><h3>Concrete &amp; Sitework</h3><p>Concrete and sitework done right — foundations, slabs, flatwork, and paving that anchor every project.</p></div>
   </div>
 </section>
 
@@ -240,13 +327,58 @@ body{
     <h2 class="serif">Why clients hand us the whole job.</h2>
     <p class="band-lead">It isn't just what we build — it's how the whole job runs, and who stands behind it when it's done. That's where three and a half decades show.</p>
     <div class="oc-range-row">
-      <div class="oc-range-item"><div class="rn serif">I</div><div class="h serif">Self-Performing Crews</div><div class="s">We handle core scopes like concrete and sitework ourselves instead of farming everything out — so quality and schedule stay in our hands.</div></div>
+      <div class="oc-range-item"><div class="rn serif">I</div><div class="h serif">A Proven Track Record</div><div class="s">Decades of homes and commercial projects across south Louisiana — and customers who come back and send the next one our way. The work speaks for itself.</div></div>
       <div class="oc-range-item"><div class="rn serif">II</div><div class="h serif">One Point of Contact</div><div class="s">Hand off the entire project to one contractor, from the first estimate to the final walk-through.</div></div>
       <div class="oc-range-item"><div class="rn serif">III</div><div class="h serif">36 Years of Judgment</div><div class="s">Decades in the field mean fewer surprises and smarter calls when something unexpected comes up.</div></div>
       <div class="oc-range-item"><div class="rn serif">IV</div><div class="h serif">Straight Answers</div><div class="s">Clear estimates, honest timelines, and no runaround — you always know where the job stands.</div></div>
     </div>
   </div>
 </section>
+
+<!-- OUR WORK -->
+<section class="oc-section" id="work">
+  <div class="oc-work-head">
+    <div>
+      <div class="oc-kicker">Our Work</div>
+      <h2 class="oc-title">A look at what we build.</h2>
+    </div>
+    <div class="oc-arrows">
+      <button class="oc-arrow" id="galPrev" aria-label="Previous projects">&#8249;</button>
+      <button class="oc-arrow" id="galNext" aria-label="More projects">&#8250;</button>
+    </div>
+  </div>
+  <p class="oc-lead">From restaurants and storefronts to custom homes, outdoor living, and ground-up commercial builds across Acadiana. Tap through the strip to preview each project above, and click the large image for full screen.</p>
+  <div class="oc-stage" id="stage">
+    <img id="stageImg" src="" alt="" />
+    <span class="oc-stage-zoom">View full</span>
+    <div class="oc-stage-cap">
+      <div>
+        <span class="rule"></span>
+        <span class="cat" id="stageCat"></span>
+        <span class="ttl" id="stageTtl"></span>
+      </div>
+      <span class="oc-stage-count" id="stageCount"></span>
+    </div>
+  </div>
+  <div class="oc-carousel">
+    <div class="oc-track" id="gallery"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX (image popup) -->
+<div class="oc-lb" id="lightbox">
+  <button class="oc-lb-x" id="lbClose" aria-label="Close">&times;</button>
+  <button class="oc-lb-nav oc-lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <button class="oc-lb-nav oc-lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="oc-lb-stage">
+    <div class="oc-lb-count" id="lbCount"></div>
+    <img id="lbImg" src="" alt="" />
+    <div class="oc-lb-meta">
+      <span class="cat" id="lbCat"></span>
+      <span class="ttl" id="lbTtl"></span>
+    </div>
+  </div>
+</div>
 
 <!-- ABOUT + PROCESS -->
 <section class="oc-section" id="about">
@@ -255,8 +387,8 @@ body{
       <div class="oc-kicker">About Ocmand Construction</div>
       <h2 class="oc-title" style="margin-bottom:22px;">Experience you can build on.</h2>
       <div class="body">
-        <p><strong>Led by Shawn Ocmand, with 36 years in the trade,</strong> Ocmand Construction has spent decades doing a little of everything.</p>
-        <p>From custom home building and major residential renovations to restaurants, retail build-outs, and commercial projects of all kinds, we bring the same hands-on standard to every job. We self-perform concrete and sitework and manage the trades that turn a plan into a finished space.</p>
+        <p><strong>Led by Shawn Ocmand, with 36 years in the trade,</strong> Ocmand Construction is a family-run business that has spent decades doing a little of everything.</p>
+        <p>From custom home building and major residential renovations to restaurants, retail build-outs, and commercial projects of all kinds, we bring the same hands-on standard to every job. As a family-run business, we manage every trade and every detail that turns a plan into a finished space.</p>
         <p>The result is a single contractor you can hand the whole project to — residential or commercial — and trust to get it done right.</p>
       </div>
     </div>
@@ -265,7 +397,7 @@ body{
       <div class="oc-steps">
         <div class="oc-step"><div class="n serif">01</div><div><h4>Estimate &amp; Plan</h4><p>We review the scope, price it clearly, and map a realistic schedule before a hammer swings.</p></div></div>
         <div class="oc-step"><div class="n serif">02</div><div><h4>Coordinate</h4><p>Permits, trades, and equipment vendors lined up so nothing stalls the job.</p></div></div>
-        <div class="oc-step"><div class="n serif">03</div><div><h4>Build</h4><p>Self-performed and managed in the field with the quality control that 36 years builds.</p></div></div>
+        <div class="oc-step"><div class="n serif">03</div><div><h4>Build</h4><p>Managed hands-on in the field, with the quality control that 36 years brings to every detail.</p></div></div>
         <div class="oc-step"><div class="n serif">04</div><div><h4>Deliver &amp; Close Out</h4><p>Inspections passed, punch list cleared, and a finished space handed over clean.</p></div></div>
       </div>
     </div>
@@ -529,6 +661,133 @@ body{
 
   render();
   renderSuggest();
+})();
+</script>
+<script>
+/* ============================================================
+   PHOTO GALLERY
+   To add a photo later: (1) upload the image into the "images"
+   folder in GitHub, then (2) add one line below in this list.
+   Format:
+     { src: "images/FILENAME.jpg", category: "Commercial", title: "Project Name" },
+   They appear in the carousel in the order listed here. Use &amp; for an "&" in a title.
+   ============================================================ */
+(function(){
+  var PROJECTS = [
+    { src: "images/project-01.jpg", category: "Commercial",  title: "Historic Downtown Restoration" },
+    { src: "images/project-14.jpg", category: "Residential", title: "Mediterranean-Style Custom Home" },
+    { src: "images/project-10.jpg", category: "Commercial",  title: "Buck &amp; Johnny's Restaurant" },
+    { src: "images/project-02.jpg", category: "Residential", title: "Custom Home" },
+    { src: "images/project-12.jpg", category: "Commercial",  title: "Parc Hardy Pavilion" },
+    { src: "images/project-03.jpg", category: "Residential", title: "Custom Barn-Style Home" },
+    { src: "images/project-11.jpg", category: "Commercial",  title: "Breaux Bridge Eye Care" },
+    { src: "images/project-13.jpg", category: "Residential", title: "Outdoor Kitchen &amp; Living Space" },
+    { src: "images/project-09.jpg", category: "Commercial",  title: "Historic Acadian Cottage" },
+    { src: "images/project-05.jpg", category: "Residential", title: "Custom Home Interior" },
+    { src: "images/project-08.jpg", category: "Commercial",  title: "Retail &amp; Office Center" },
+    { src: "images/project-06.jpg", category: "Residential", title: "Outdoor Living Addition" },
+    { src: "images/project-04.jpg", category: "Commercial",  title: "Corner Commercial Renovation" }
+  ];
+
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+
+  var track   = document.getElementById('gallery');
+  var stage   = document.getElementById('stage');
+  var stageImg= document.getElementById('stageImg');
+  var stageCat= document.getElementById('stageCat');
+  var stageTtl= document.getElementById('stageTtl');
+  var stageCt = document.getElementById('stageCount');
+  var lb      = document.getElementById('lightbox');
+  var lbImg   = document.getElementById('lbImg');
+  var lbCat   = document.getElementById('lbCat');
+  var lbTtl   = document.getElementById('lbTtl');
+  var lbCount = document.getElementById('lbCount');
+  var thumbs  = [];
+  var active  = 0;
+
+  /* build the thumbnail filmstrip */
+  PROJECTS.forEach(function(p, i){
+    var b = document.createElement('button');
+    b.className = 'oc-shot';
+    b.setAttribute('aria-label', p.title.replace(/&amp;/g, '&'));
+    b.innerHTML = '<img src="' + p.src + '" alt="' + p.title.replace(/&amp;/g, '&') + '" loading="lazy" />';
+    b.onclick = function(){ setActive(i, true); };
+    track.appendChild(b);
+    thumbs.push(b);
+  });
+
+  /* show a project in the big viewer (and sync the popup if it's open) */
+  function setActive(i, doScroll){
+    active = (i + PROJECTS.length) % PROJECTS.length;
+    var p = PROJECTS[active];
+    stageImg.classList.remove('ready');
+    stageImg.alt = p.title.replace(/&amp;/g, '&');
+    stageImg.src = p.src;
+    if (stageImg.complete) stageImg.classList.add('ready');
+    else stageImg.onload = function(){ stageImg.classList.add('ready'); };
+    stageCat.textContent = p.category;
+    stageTtl.innerHTML = p.title;
+    stageCt.textContent = pad(active + 1) + " / " + pad(PROJECTS.length);
+    thumbs.forEach(function(t, ti){ t.classList.toggle('active', ti === active); });
+    if (doScroll) centerThumb(thumbs[active]);
+    if (lb.classList.contains('open')) refreshLightbox();
+  }
+
+  function centerThumb(el){
+    if (!el) return;
+    var tRect = track.getBoundingClientRect(), eRect = el.getBoundingClientRect();
+    var delta = (eRect.left - tRect.left) - (track.clientWidth - el.clientWidth) / 2;
+    track.scrollBy({ left: delta, behavior: 'smooth' });
+  }
+
+  /* arrows step through the photos */
+  document.getElementById('galPrev').onclick = function(){ setActive(active - 1, true); };
+  document.getElementById('galNext').onclick = function(){ setActive(active + 1, true); };
+
+  /* click the big viewer to open the full-screen popup */
+  stage.onclick = function(){ refreshLightbox(); lb.classList.add('open'); };
+
+  function refreshLightbox(){
+    var p = PROJECTS[active];
+    lbImg.src = p.src;
+    lbImg.alt = p.title.replace(/&amp;/g, '&');
+    lbCat.textContent = p.category;
+    lbTtl.innerHTML = p.title;
+    lbCount.textContent = pad(active + 1) + " / " + pad(PROJECTS.length);
+  }
+  function close(){ lb.classList.remove('open'); }
+
+  document.getElementById('lbClose').onclick = close;
+  document.getElementById('lbPrev').onclick = function(e){ e.stopPropagation(); setActive(active - 1, true); };
+  document.getElementById('lbNext').onclick = function(e){ e.stopPropagation(); setActive(active + 1, true); };
+  lb.onclick = function(e){ if (e.target === lb || e.target === lbImg) close(); };
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') setActive(active - 1, true);
+    else if (e.key === 'ArrowRight') setActive(active + 1, true);
+  });
+
+  /* start on the first project */
+  setActive(0, false);
+})();
+</script>
+<script>
+/* Scroll animations: sections rise/fade in as they enter view, and back out as they leave.
+   Falls back to fully-visible if the browser doesn't support it (no JS = everything shows). */
+(function(){
+  var targets = [].slice.call(document.querySelectorAll(
+    'header.oc-hero, .oc-stats, #services, #range, #work, #about, .oc-assistant, #contact, .oc-footer'
+  ));
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+  targets.forEach(function(el){ el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) e.target.classList.add('in');
+      else e.target.classList.remove('in');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  targets.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
