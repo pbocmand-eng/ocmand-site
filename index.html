@@ -476,12 +476,13 @@ body{
 
 <script>
 (function(){
-  var GREETING = "Hi — I'm Ocmand Construction's project assistant. Tell me about your project, whether it's a commercial build, a renovation, or a new home. Or ask what we do, and I can help you rough out an estimate request right here.";
+  var GREETING = "Hey there — I'm Ocmand Construction's project assistant. I can tell you what we build, help you figure out if your project's a fit, and put together an estimate request for the team to follow up on. What are you thinking about — a home, a renovation, a commercial space, or something else?";
   var SUGGESTIONS = [
-    "What kinds of projects do you take on?",
-    "Can you handle a commercial renovation?",
+    "What kind of work do you take on?",
     "Do you build custom homes?",
-    "Help me put together an estimate request"
+    "I'm planning a renovation or addition",
+    "I have a commercial project",
+    "Help me request an estimate"
   ];
 
   var log = document.getElementById('chatLog');
@@ -568,7 +569,7 @@ body{
     if (!hasUserMsg || leadSent) return;
     var b = document.createElement('button');
     b.className = 'oc-leadbtn';
-    b.textContent = 'Send this conversation to Ocmand';
+    b.textContent = 'Send to Ocmand Construction Team';
     b.onclick = sendLead;
     leadBar.appendChild(b);
   }
