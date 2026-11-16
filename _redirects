@@ -1,0 +1,7 @@
+/custom-homes /services 301
+/outdoor-living /services 301
+/renovations-additions /services 301
+/storm-restoration /services 301
+/residential /services 301
+/reviews /about 301
+/api/* / 302
