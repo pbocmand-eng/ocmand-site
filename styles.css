@@ -38,6 +38,7 @@ button,input,select,textarea{font:inherit;color:inherit;}
 .on-navy{color:#fff;}
 .on-navy .h-xl,.on-navy .h-lg,.on-navy .h-md,.on-navy .h-sm{color:#fff;}
 .on-navy .lede,.on-navy .note,.on-navy .kicker{color:#b9c4d8;}
+.on-navy .prose p{color:#d3dbe9;}
 
 /* ---------- buttons & links ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;font-weight:620;font-size:16px;letter-spacing:.005em;text-decoration:none;border:1.5px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);}
