@@ -5,3 +5,5 @@
 /residential /services 301
 /reviews /about 301
 /api/* / 302
+/_source/* / 302
+/CLAUDE.md / 302
